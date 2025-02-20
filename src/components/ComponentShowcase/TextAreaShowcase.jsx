@@ -16,21 +16,18 @@ export default function TextAreaShowcase() {
 
       <div className="grid grid-cols-3 gap-4 mb-8 w-full">
         <TextArea 
-          label="put stuf"
           placeholder="many text go here"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
         
         <TextArea 
-          label="bad thing happen"
           placeholder="oopsie"
-          error="NO WERK :("
+          error="bad thing happen"
           defaultValue="code bad"
         />
         
         <TextArea 
-          label="ded"
           placeholder="not alowed sry"
           disabled
           defaultValue="brain.exe stop"
@@ -41,8 +38,8 @@ export default function TextAreaShowcase() {
         <pre className="text-sm sm:text-base whitespace-pre">{`import { TextArea } from '@cottoncandy/TextArea'
 
 <TextArea
-  label="put stuf"
-  placeholder="write lot here"
+  placeholder="many text go here"
+  error="bad thing happen"
 />`}</pre>
       </div>
     </section>

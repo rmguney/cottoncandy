@@ -25,21 +25,18 @@ export default function DropdownShowcase() {
 
       <div className="grid grid-cols-3 gap-4 mb-8">
         <Dropdown 
-          label="pick food"
           options={options}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
         
         <Dropdown 
-          label="broken thing"
           options={options}
           error="NO FOOD 4 U :("
           defaultValue="pizza"
         />
         
         <Dropdown 
-          label="ded"
           options={options}
           disabled
           defaultValue="burger"
@@ -50,7 +47,6 @@ export default function DropdownShowcase() {
         <pre className="text-sm sm:text-base whitespace-pre">{`import { Dropdown } from '@cottoncandy/Dropdown'
 
 <Dropdown
-  label="pick food"
   options={options}
   onChange={handleChange}
 />`}</pre>

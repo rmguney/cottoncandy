@@ -28,6 +28,7 @@ const Button = React.forwardRef(({
   children,
   className,
   soundEffect,
+  disabled,
   ...props 
 }, ref) => {
   const state = useButton(props);
@@ -48,15 +49,23 @@ const Button = React.forwardRef(({
   }
 
   return (
-    <button
-      ref={ref}
-      className={`${styles.button} ${className || ''}`}
-      {...state.buttonProps}
-      onClick={handleClick}
-      data-sound={!!soundEffect}
-    >
-      {children}
-    </button>
+    <div className={styles.wrapper}>
+      <button
+        ref={ref}
+        className={`${styles.button} ${className || ''}`}
+        disabled={disabled}
+        {...state.buttonProps}
+        onClick={handleClick}
+        data-sound={!!soundEffect}
+      >
+        {children}
+      </button>
+      {disabled && (
+        <div className={styles.disabledOverlay}>
+          ×
+        </div>
+      )}
+    </div>
   );
 });
 

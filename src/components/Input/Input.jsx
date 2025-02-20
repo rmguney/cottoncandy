@@ -26,6 +26,8 @@ const Input = React.forwardRef(({
   render,
   children,
   className,
+  error,
+  disabled,
   ...props 
 }, ref) => {
   const { inputProps, focused } = useInput(props);
@@ -38,13 +40,25 @@ const Input = React.forwardRef(({
     return children({ inputProps, focused, ref });
   }
 
-  // Default awful styling
   return (
-    <input
-      ref={ref}
-      className={`${styles.input} ${className || ''}`}
-      {...inputProps}
-    />
+    <div className={styles.wrapper}>
+      <input
+        ref={ref}
+        className={`${styles.input} ${className || ''}`}
+        disabled={disabled}
+        {...inputProps}
+      />
+      {error && (
+        <div className={styles.errorLabel}>
+          AAAAAA IT BORKED
+        </div>
+      )}
+      {disabled && (
+        <div className={styles.disabledOverlay}>
+          ×
+        </div>
+      )}
+    </div>
   );
 });
 

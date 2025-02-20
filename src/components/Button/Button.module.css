@@ -35,6 +35,26 @@
   transform: scale(1.2) rotate(180deg);
 }
 
+.button:disabled {
+  background: repeating-linear-gradient(
+    45deg,
+    #666666 0px,
+    #666666 10px,
+    #333333 10px,
+    #333333 20px
+  );
+  border-style: ridge;
+  border-color: #444444;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.8;
+  text-shadow: 
+    -1px -1px #ff0000,
+    1px 1px #0000ff;
+  animation: glitchText 0.3s infinite;
+  transform: none;
+}
+
 .button::before {
   content: "👻";
   position: absolute;
@@ -46,6 +66,27 @@
   position: absolute;
   right: 0;
   animation: fireFloat 1s infinite reverse;
+}
+
+.wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.disabledOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  color: #ff0000;
+  opacity: 0.5;
+  font-family: Impact;
+  pointer-events: none;
+  animation: disabledPulse 1s infinite;
+  text-shadow: 
+    0 0 10px #ff0000,
+    0 0 20px #000000;
 }
 
 @keyframes buttonMadness {
@@ -70,4 +111,18 @@
   0% { transform: scale(1) rotate(0deg); filter: hue-rotate(0deg); }
   50% { transform: scale(1.1) rotate(10deg); filter: hue-rotate(180deg); }
   100% { transform: scale(1) rotate(0deg); filter: hue-rotate(360deg); }
+}
+
+@keyframes glitchText {
+  0% { transform: translate(0px, 0px) skew(0deg); }
+  25% { transform: translate(-2px, 1px) skew(2deg); }
+  50% { transform: translate(1px, -1px) skew(-1deg); }
+  75% { transform: translate(2px, 1px) skew(3deg); }
+  100% { transform: translate(0px, 0px) skew(0deg); }
+}
+
+@keyframes disabledPulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
 }

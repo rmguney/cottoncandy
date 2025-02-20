@@ -30,6 +30,8 @@ const Dropdown = React.forwardRef(({
   children,
   className,
   options = [],
+  error,
+  disabled,
   ...props 
 }, ref) => {
   const state = useDropdown(props);
@@ -42,19 +44,31 @@ const Dropdown = React.forwardRef(({
     return children({ ...state, options, ref });
   }
 
-  // Default awful styling
   return (
-    <select
-      ref={ref}
-      className={`${styles.select} ${className || ''}`}
-      {...state.selectProps}
-    >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
+    <div className={styles.wrapper}>
+      <select
+        ref={ref}
+        className={`${styles.select} ${className || ''}`}
+        disabled={disabled}
+        {...state.selectProps}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      {error && (
+        <div className={styles.errorLabel}>
+          AAAAAA IT BORKED
+        </div>
+      )}
+      {disabled && (
+        <div className={styles.disabledOverlay}>
+          ×
+        </div>
+      )}
+    </div>
   );
 });
 

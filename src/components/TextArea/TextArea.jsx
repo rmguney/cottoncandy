@@ -3,56 +3,31 @@
 import React from 'react';
 import styles from './TextArea.module.css';
 
-export function useTextArea(props = {}) {
-  const [focused, setFocused] = React.useState(false);
-  const [wordCount, setWordCount] = React.useState(0);
-
-  const handleChange = (e) => {
-    const words = e.target.value.trim().split(/\s+/).filter(Boolean).length;
-    setWordCount(words);
-    props.onChange?.(e);
-  };
-
-  return {
-    textareaProps: {
-      onChange: handleChange,
-      onFocus: (e) => {
-        setFocused(true);
-        props.onFocus?.(e);
-      },
-      onBlur: (e) => {
-        setFocused(false);
-        props.onBlur?.(e);
-      },
-      ...props
-    },
-    focused,
-    wordCount
-  };
-}
-
 const TextArea = React.forwardRef(({ 
-  render,
-  children,
   className,
+  error,
+  disabled,
   ...props 
 }, ref) => {
-  const state = useTextArea(props);
-
-  if (render) {
-    return render({ ...state, ref });
-  }
-
-  if (typeof children === 'function') {
-    return children({ ...state, ref });
-  }
-
   return (
-    <textarea
-      ref={ref}
-      className={`${styles.textarea} ${className || ''}`}
-      {...state.textareaProps}
-    />
+    <div className={styles.wrapper}>
+      <textarea
+        ref={ref}
+        className={`${styles.textarea} ${className || ''}`}
+        disabled={disabled}
+        {...props}
+      />
+      {error && (
+        <div className={styles.errorLabel}>
+          AAAAAA IT BORKED
+        </div>
+      )}
+      {disabled && (
+        <div className={styles.disabledOverlay}>
+          ×
+        </div>
+      )}
+    </div>
   );
 });
 

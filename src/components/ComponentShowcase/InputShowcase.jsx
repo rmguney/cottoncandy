@@ -17,20 +17,16 @@ export default function InputShowcase() {
 
       <div className="flex flex-wrap gap-4 mb-8">
         <Input 
-          label="put text"
           placeholder="type here ok"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
         
         <Input 
-          label="oh no erör"
-          placeholder="broke :("
-          error="AAAAAA IT BORKED"
+          placeholder="no werk :("
         />
         
         <Input 
-          label="no werk"
           placeholder="cant type sry"
           disabled
         />
@@ -40,8 +36,7 @@ export default function InputShowcase() {
         <pre>{`import { Input } from '@cottoncandy/Input'
 
 <Input
-  label="oh no erör"
-  placeholder="broke :("
+  placeholder="no werk :("
   error="AAAAAA IT BORKED"
 />`}</pre>
       </div>
