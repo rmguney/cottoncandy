@@ -3,17 +3,57 @@
 import React from 'react';
 import styles from './Button.module.css';
 
+export function useButton(props = {}) {
+  const [isPressed, setIsPressed] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  return {
+    buttonProps: {
+      onMouseDown: () => setIsPressed(true),
+      onMouseUp: () => setIsPressed(false),
+      onMouseEnter: () => setIsHovered(true),
+      onMouseLeave: () => {
+        setIsHovered(false);
+        setIsPressed(false);
+      },
+      ...props
+    },
+    isPressed,
+    isHovered
+  };
+}
+
 const Button = React.forwardRef(({ 
-  className, 
+  render,
   children,
-  variant,
+  className,
+  soundEffect,
   ...props 
 }, ref) => {
+  const state = useButton(props);
+  
+  const handleClick = (e) => {
+    if (soundEffect) {
+      new Audio(soundEffect).play().catch(() => {});
+    }
+    props.onClick?.(e);
+  };
+
+  if (render) {
+    return render({ ...state, ref });
+  }
+
+  if (typeof children === 'function') {
+    return children({ ...state, ref });
+  }
+
   return (
     <button
       ref={ref}
-      className={`${styles.button} ${variant ? styles[variant] : ''} ${className || ''}`}
-      {...props}
+      className={`${styles.button} ${className || ''}`}
+      {...state.buttonProps}
+      onClick={handleClick}
+      data-sound={!!soundEffect}
     >
       {children}
     </button>

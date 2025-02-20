@@ -1,0 +1,45 @@
+.errorLabel {
+  color: #ff0000;
+  font-family: "Comic Sans MS", "Papyrus", cursive;
+  text-shadow: 
+    2px 2px #00ff00,
+    -2px -2px #0000ff,
+    0 0 10px #ff00ff;
+  animation: errorFlash 0.2s infinite;
+  background: repeating-linear-gradient(
+    45deg,
+    #000000 0px,
+    #000000 10px,
+    #ff0000 10px,
+    #ff0000 20px
+  );
+  padding: 5px 10px;
+  border: 3px dashed #ff00ff;
+  transform: rotate(-2deg);
+  position: relative;
+  display: inline-block;
+}
+
+.errorLabel::before {
+  content: "⚠️";
+  position: absolute;
+  left: -20px;
+  animation: warningBounce 0.5s infinite;
+}
+
+.errorLabel::after {
+  content: "⚠️";
+  position: absolute;
+  right: -20px;
+  animation: warningBounce 0.5s infinite reverse;
+}
+
+@keyframes errorFlash {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes warningBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}

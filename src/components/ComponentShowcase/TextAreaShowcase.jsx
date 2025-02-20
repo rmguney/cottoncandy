@@ -11,10 +11,10 @@ export default function TextAreaShowcase() {
       <h2 className="text-2xl sm:text-4xl mb-4 font-bold rainbow-text">✨ big box ✨</h2>
       
       <div className="bg-[#0000FF] p-2 sm:p-4 mb-4 font-[Comic Sans MS] overflow-x-auto">
-        <code className="text-[#FFFF00] text-sm sm:text-base whitespace-nowrap">npm install @blursed/textarea</code>
+        <code className="text-[#FFFF00] text-sm sm:text-base whitespace-nowrap">npm install @cottoncandy/TextArea</code>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 mb-8 w-full">
+      <div className="grid grid-cols-3 gap-4 mb-8 w-full">
         <TextArea 
           label="put stuf"
           placeholder="many text go here"

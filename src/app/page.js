@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import ButtonShowcase from "../components/ComponentShowcase/ButtonShowcase";
 import InputShowcase from "../components/ComponentShowcase/InputShowcase";
 import TextAreaShowcase from "../components/ComponentShowcase/TextAreaShowcase";
+import DropdownShowcase from "@/components/ComponentShowcase/DropdownShowcase";
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
           <ButtonShowcase />
           <InputShowcase />
           <TextAreaShowcase />
+          <DropdownShowcase />
+
         </div>
         <Footer />
       </main>

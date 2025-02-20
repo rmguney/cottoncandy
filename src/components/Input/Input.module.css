@@ -1,83 +1,52 @@
-.wrapper {
-  position: relative;
-  padding: 10px;
-  background: linear-gradient(to right, #ff00ff, #00ff00);
-  border: 3px dotted #ff0000;
-  max-width: 300px;
-}
-
-.label {
-  display: block;
-  font-family: "Comic Sans MS";
-  color: #ff0000;
-  text-shadow: 2px 2px #00ff00, -2px -2px #0000ff;
-  transform: rotate(-2deg);
-  margin-bottom: 8px;
-  animation: labelDance 1s infinite;
-}
-
-.required {
-  font-size: 0.8em;
-  color: #ff00ff;
-  margin-left: 4px;
-  animation: blink 0.5s infinite;
-}
-
 .input {
+  background: 
+    url("data:image/gif;base64,R0lGODlhCAAIAKECAAAAAP///////wAAACH5BAEKAAIALAAAAAAIAAgAAAISlI+pe+H/hnhUpmbvyLz3/yQFADs="),
+    repeating-conic-gradient(
+      from 0deg,
+      #ff00ff 0deg 30deg,
+      #00ff00 30deg 60deg,
+      #0000ff 60deg 90deg
+    );
+  color: #00ff00;
+  border: 5px dashed #ff00ff;
+  font-family: "Comic Sans MS", "Wingdings", monospace;
+  padding: 15px;
   width: 100%;
-  padding: 12px;
-  border: 5px groove #00ffff;
-  background: #ffff00;
-  font-family: "Comic Sans MS";
-  font-size: 16px;
+  text-shadow: 
+    0 0 5px #ff00ff,
+    0 0 10px #00ff00,
+    0 0 15px #0000ff;
+  animation: inputCrazy 1s infinite;
+  transform: perspective(500px) rotateX(5deg);
+  box-shadow: 
+    0 0 10px #ff00ff,
+    0 0 20px #00ff00,
+    0 0 30px #0000ff;
+}
+
+.input::placeholder {
   color: #ff00ff;
-  transform: skew(-5deg);
-  box-shadow: inset 0 0 10px #ff00ff;
+  font-family: "Wingdings";
 }
 
 .input:focus {
   outline: none;
-  animation: shake 0.5s infinite;
-  background: #00ffff;
-  color: #ff0000;
+  animation: inputPanic 0.2s infinite;
+  background-color: #000000;
+  border-style: groove ridge double dotted;
+  border-width: 10px;
+  border-image: repeating-linear-gradient(45deg, #ff0, #f0f 10px) 1;
 }
 
-.input:hover {
-  cursor: pointer;
+@keyframes inputCrazy {
+  0% { transform: perspective(500px) rotateX(5deg) translateX(0); }
+  25% { transform: perspective(500px) rotateX(-5deg) translateX(5px); }
+  75% { transform: perspective(500px) rotateX(5deg) translateX(-5px); }
+  100% { transform: perspective(500px) rotateX(5deg) translateX(0); }
 }
 
-.error {
-  border-color: #ff0000;
-  animation: errorPulse 1s infinite;
-}
-
-.errorMessage {
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  color: #ff0000;
-  font-family: "Impact";
-  animation: slideError 0.5s infinite;
-  background: yellow;
-  padding: 2px 5px;
-}
-
-@keyframes labelDance {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
-}
-
-@keyframes shake {
-  0%, 100% { transform: skew(-5deg); }
-  50% { transform: skew(5deg); }
-}
-
-@keyframes errorPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-
-@keyframes slideError {
-  0%, 100% { left: 0; }
-  50% { left: 5px; }
+@keyframes inputPanic {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(5px, 5px) rotate(5deg); }
+  75% { transform: translate(-5px, -5px) rotate(-5deg); }
 }

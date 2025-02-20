@@ -3,28 +3,48 @@
 import React from 'react';
 import styles from './Input.module.css';
 
+export function useInput(props = {}) {
+  const [focused, setFocused] = React.useState(false);
+  
+  return {
+    inputProps: {
+      onFocus: (e) => {
+        setFocused(true);
+        props.onFocus?.(e);
+      },
+      onBlur: (e) => {
+        setFocused(false);
+        props.onBlur?.(e);
+      },
+      ...props
+    },
+    focused
+  };
+}
+
 const Input = React.forwardRef(({ 
-  className, 
-  label, 
-  error,
-  required,
+  render,
+  children,
+  className,
   ...props 
 }, ref) => {
+  const { inputProps, focused } = useInput(props);
+
+  if (render) {
+    return render({ inputProps, focused, ref });
+  }
+
+  if (typeof children === 'function') {
+    return children({ inputProps, focused, ref });
+  }
+
+  // Default awful styling
   return (
-    <div className={styles.wrapper}>
-      {label && (
-        <label className={styles.label}>
-          {label}
-          {required && <span className={styles.required}>*</span>}
-        </label>
-      )}
-      <input
-        ref={ref}
-        className={`${styles.input} ${error ? styles.error : ''} ${className || ''}`}
-        {...props}
-      />
-      {error && <span className={styles.errorMessage}>{error}</span>}
-    </div>
+    <input
+      ref={ref}
+      className={`${styles.input} ${className || ''}`}
+      {...inputProps}
+    />
   );
 });
 

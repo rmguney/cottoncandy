@@ -33,7 +33,7 @@ export default function ButtonShowcase() {
         <pre>
           {`import { Button } frm '@cottoncandy/Button'
 
-<Button variant="danjer">
+<Button variant="danger">
   do awfle thngs
 </Buttun>`}
         </pre>

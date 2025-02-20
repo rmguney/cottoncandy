@@ -1,85 +1,73 @@
-.wrapper {
-  position: relative;
-  padding: 5px;
-  background: linear-gradient(to right, #ff00ff, #00ff00);
-  border: 3px dotted #ff0000;
-  width: 100%;
-  max-width: 100%;
-  display: inline-block;
-  margin: 0 10px;
-}
-
 .button {
-  width: 100%;
-  padding: 8px 16px;
-  border: 5px groove #00ffff;
-  background: #ffff00;
-  font-family: "Comic Sans MS";
-  font-size: 16px;
-  color: #ff00ff;
-  transform: skew(-5deg);
-  box-shadow: inset 0 0 10px #ff00ff;
-  cursor: pointer;
-  animation: buttonDance 1s infinite;
-  min-width: 120px;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  background: url("data:image/gif;base64,R0lGODlhCAAIAKECAAAAAP///////wAAACH5BAEKAAIALAAAAAAIAAgAAAISlI+pe+H/hnhUpmbvyLz3/yQFADs="),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      #ff00ff,
+      #00ff00 10px,
+      #ff0000 20px,
+      #0000ff 30px
+    );
+  border: 6px groove #ff00ff;
+  font-family: "Comic Sans MS", "Papyrus", "Impact", cursive;
+  padding: 10px 20px;
+  color: yellow;
+  text-shadow: 
+    2px 2px #ff0000,
+    -2px -2px #0000ff,
+    4px 4px #00ff00,
+    -4px -4px #ff00ff;
+  transform: skew(-15deg) rotate(2deg);
+  animation: buttonMadness 0.5s infinite;
+  position: relative;
+  cursor: crosshair;
+  mix-blend-mode: difference;
+  filter: contrast(200%) brightness(150%);
+  transition: all 0.1s;
 }
 
 .button:hover {
-  animation: shake 0.5s infinite;
-  background: #00ffff;
-  color: #ff0000;
+  animation: buttonExplosion 0.2s infinite;
+  border-style: dashed double dotted solid;
+  letter-spacing: 3px;
 }
 
 .button:active {
-  transform: translateY(4px);
-  box-shadow: none;
+  transform: scale(1.2) rotate(180deg);
 }
 
-.button:disabled {
-  opacity: 0.5;
-  animation: none;
-  cursor: not-allowed;
-  background: #cccccc;
+.button::before {
+  content: "👻";
+  position: absolute;
+  animation: ghostFloat 1s infinite;
 }
 
-.danger {
-  background: #ff0000;
-  color: #ffff00;
-  border-color: #ff00ff;
+.button::after {
+  content: "🔥";
+  position: absolute;
+  right: 0;
+  animation: fireFloat 1s infinite reverse;
 }
 
-.danger:hover {
-  background: #ff00ff;
-  color: #ff0000;
+@keyframes buttonMadness {
+  0% { transform: skew(-15deg) rotate(2deg) translate(0, 0); }
+  25% { transform: skew(15deg) rotate(-2deg) translate(5px, 5px); }
+  50% { transform: skew(-15deg) rotate(2deg) translate(-5px, -5px); }
+  75% { transform: skew(15deg) rotate(-2deg) translate(-5px, 5px); }
+  100% { transform: skew(-15deg) rotate(2deg) translate(0, 0); }
 }
 
-@keyframes buttonDance {
-  0%, 100% { transform: skew(-5deg) rotate(-1deg); }
-  50% { transform: skew(-5deg) rotate(1deg); }
+@keyframes ghostFloat {
+  0%, 100% { left: -10px; top: -10px; transform: scale(1.5) rotate(0deg); }
+  50% { left: 10px; top: 10px; transform: scale(0.5) rotate(360deg); }
 }
 
-@keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+@keyframes fireFloat {
+  0%, 100% { right: -10px; top: -10px; transform: scale(1.5) rotate(0deg); }
+  50% { right: 10px; top: 10px; transform: scale(0.5) rotate(-360deg); }
 }
 
-@media (max-width: 640px) {
-  .button {
-    min-width: 100px;
-    font-size: 14px;
-    padding: 6px 12px;
-  }
+@keyframes buttonExplosion {
+  0% { transform: scale(1) rotate(0deg); filter: hue-rotate(0deg); }
+  50% { transform: scale(1.1) rotate(10deg); filter: hue-rotate(180deg); }
+  100% { transform: scale(1) rotate(0deg); filter: hue-rotate(360deg); }
 }
