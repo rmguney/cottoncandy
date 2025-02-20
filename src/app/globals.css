@@ -61,7 +61,6 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Comic Sans MS", "Comic Neue", cursive;
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="18" font-size="16">💀</text></svg>'), auto;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%23000' fill-opacity='.3'/%3E%3C/svg%3E");
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
@@ -111,10 +110,9 @@ body {
 }
 
 * {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="18" font-size="16">💀</text></svg>') 10 10, auto;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text y="30" font-size="30">🍄</text></svg>') 10 10, auto;
 }
 
-/* Add these new mobile-friendly styles */
 @media (max-width: 640px) {
   .word-art {
     animation: none;
@@ -133,17 +131,15 @@ body {
   }
 }
 
-/* Improve touch targets on mobile */
 @media (hover: none) {
   button, 
   input, 
   textarea {
     min-height: 44px;
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px; 
   }
 }
 
-/* Ensure content doesn't overflow */
 img, pre, code {
   max-width: 100%;
 }

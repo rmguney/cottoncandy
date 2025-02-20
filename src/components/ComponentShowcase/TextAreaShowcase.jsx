@@ -16,21 +16,29 @@ export default function TextAreaShowcase() {
 
       <div className="grid grid-cols-3 gap-4 mb-8 w-full">
         <TextArea 
-          placeholder="many text go here"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          placeholder="type here ok"
+          className="w-full min-h-[100px] border-4 border-[#ff00ff] bg-black text-[#00ff00]"
+          wrapperClassName="relative w-full"
         />
         
         <TextArea 
           placeholder="oopsie"
-          error="bad thing happen"
-          defaultValue="code bad"
+          aria-invalid="true"
+          className="
+            w-full min-h-[100px] 
+            border-4 border-red-500 bg-black text-[#00ff00]
+            animate-[shake_0.2s_ease-in-out_infinite]
+          "
         />
         
         <TextArea 
-          placeholder="not alowed sry"
+          placeholder="cant type sry"
           disabled
-          defaultValue="brain.exe stop"
+          className="
+            w-full min-h-[100px] 
+            border-4 border-gray-500 bg-gray-800 text-gray-500
+            cursor-not-allowed opacity-50
+          "
         />
       </div>
 

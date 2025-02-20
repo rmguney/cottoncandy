@@ -7,22 +7,41 @@ const TextArea = React.forwardRef(({
   className,
   error,
   disabled,
+  variant = 'horrific', // Add variant prop with default
+  hideAnimations, // Add animation toggle
   ...props 
 }, ref) => {
+  const getClassName = () => {
+    const classes = [styles.base];
+    
+    if (variant === 'horrific') {
+      classes.push(styles.horrific);
+      if (!hideAnimations) {
+        classes.push(styles.animated);
+      }
+    }
+    
+    if (className) {
+      classes.push(className);
+    }
+    
+    return classes.join(' ');
+  };
+
   return (
     <div className={styles.wrapper}>
       <textarea
         ref={ref}
-        className={`${styles.textarea} ${className || ''}`}
+        className={getClassName()}
         disabled={disabled}
         {...props}
       />
       {error && (
         <div className={styles.errorLabel}>
-          AAAAAA IT BORKED
+          {error}
         </div>
       )}
-      {disabled && (
+      {disabled && variant === 'horrific' && (
         <div className={styles.disabledOverlay}>
           ×
         </div>

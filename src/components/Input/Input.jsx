@@ -50,7 +50,7 @@ const Input = React.forwardRef(({
       />
       {error && (
         <div className={styles.errorLabel}>
-          AAAAAA IT BORKED
+          {error}
         </div>
       )}
       {disabled && (

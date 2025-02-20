@@ -15,7 +15,7 @@ export default function InputShowcase() {
         <code className="text-[#FFFF00]">npm install @cottoncandy/Input</code>
       </div>
 
-      <div className="flex flex-wrap gap-4 mb-8">
+      <div className="flex flex-row gap-4 mb-8">
         <Input 
           placeholder="type here ok"
           value={value}
@@ -24,6 +24,7 @@ export default function InputShowcase() {
         
         <Input 
           placeholder="no werk :("
+          error="AAAAAA IT BORKED"
         />
         
         <Input 

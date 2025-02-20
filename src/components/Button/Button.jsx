@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import styles from './Button.module.css';
 
 export function useButton(props = {}) {
@@ -70,4 +71,8 @@ const Button = React.forwardRef(({
 });
 
 Button.displayName = 'Button';
-export default Button;
+
+// Prevent hydration mismatch
+export default dynamic(() => Promise.resolve(Button), {
+  ssr: false
+});

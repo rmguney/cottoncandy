@@ -36,23 +36,44 @@
 }
 
 .button:disabled {
-  background: repeating-linear-gradient(
-    45deg,
-    #666666 0px,
-    #666666 10px,
-    #333333 10px,
-    #333333 20px
-  );
-  border-style: ridge;
-  border-color: #444444;
-  color: #666666;
-  cursor: not-allowed;
-  opacity: 0.8;
+  background: 
+    url("data:image/gif;base64,R0lGODlhCAAIAKECAAAAAP///////wAAACH5BAEKAAIALAAAAAAIAAgAAAISlI+pe+H/hnhUpmbvyLz3/yQFADs="),
+    url("data:image/gif;base64,R0lGODlhCgAKALMAAP///zk5OWtra4SEhKWlpb29vdXV1eXl5fX19QAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAKAAoAAAQlEBimy3SKTGJAIEyUQIDNtnIARXRWajBKQFDBFEitguH4ni+WAQAh"),
+    linear-gradient(45deg, #ff6 12%, transparent 0, transparent 88%, #ff6 0),
+    linear-gradient(135deg, transparent 37%, #d9ecff 0, #d9ecff 63%, transparent 0),
+    linear-gradient(45deg, transparent 37%, #ff6 0, #ff6 63%, transparent 0) #c00;
+  background-size: 3px 3px, 3px 3px, 20px 20px, 20px 20px, 20px 20px;
+  border: 8px ridge #ff00ff;
+  color: #00ff00;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><text y='25' font-size='20'>🚫</text></svg>"), not-allowed;
   text-shadow: 
-    -1px -1px #ff0000,
-    1px 1px #0000ff;
-  animation: glitchText 0.3s infinite;
-  transform: none;
+    2px 2px #ff0000,
+    -2px -2px #0000ff,
+    0 0 5px #ffffff;
+  font-family: "Papyrus", "Comic Sans MS", fantasy;
+  letter-spacing: 2px;
+  animation: 
+    geocitiesSpin 3s infinite linear,
+    marqueeLeft 1s infinite linear,
+    blink 0.5s infinite step-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:disabled::before {
+  content: "💫";
+  position: absolute;
+  animation: starSpin 1s infinite linear;
+  font-size: 24px;
+  left: 5px;
+}
+
+.button:disabled::after {
+  content: "💫";
+  position: absolute;
+  animation: starSpin 1s infinite linear reverse;
+  font-size: 24px;
+  right: 5px;
 }
 
 .button::before {
@@ -68,6 +89,18 @@
   animation: fireFloat 1s infinite reverse;
 }
 
+.button::selection {
+  background: 
+    repeating-radial-gradient(
+      circle at center,
+      #000080 0px,
+      #000080 5px,
+      #0000ff 5px,
+      #0000ff 10px
+    );
+  color: #ffffff;
+}
+
 .wrapper {
   position: relative;
   width: fit-content;
@@ -78,15 +111,26 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 100px;
+  font-size: 120px;
   color: #ff0000;
   opacity: 0.5;
   font-family: Impact;
   pointer-events: none;
-  animation: disabledPulse 1s infinite;
+  animation: 
+    disabledPulse 1s infinite;
+  background: -webkit-linear-gradient(#ff0000, #ff00ff, #0000ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 4px #ffffff;
   text-shadow: 
     0 0 10px #ff0000,
     0 0 20px #000000;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 5px #ff00ff) drop-shadow(0 0 10px #00ff00);
+  transform-origin: center;
+  animation: 
+    geocitiesPulse 0.5s infinite,
+    rotate3d 2s infinite;
 }
 
 @keyframes buttonMadness {
@@ -125,4 +169,46 @@
   0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
   50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
   100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shakeGently {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 2px); }
+  75% { transform: translate(2px, -2px); }
+}
+
+@keyframes geocitiesSpin {
+  0% { transform: perspective(500px) rotateY(0deg); }
+  100% { transform: perspective(500px) rotateY(360deg); }
+}
+
+@keyframes marqueeLeft {
+  0% { background-position: 0 0; }
+  100% { background-position: -20px 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes starSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.5); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes geocitiesPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) scale(1.2) rotate(10deg); }
+}
+
+@keyframes rotate3d {
+  0% { transform: translate(-50%, -50%) rotate3d(1, 1, 1, 0deg); }
+  100% { transform: translate(-50%, -50%) rotate3d(1, 1, 1, 360deg); }
 }

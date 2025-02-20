@@ -32,7 +32,7 @@ export default function DropdownShowcase() {
         
         <Dropdown 
           options={options}
-          error="NO FOOD 4 U :("
+          error="AAAAAA IT BORKED"
           defaultValue="pizza"
         />
         

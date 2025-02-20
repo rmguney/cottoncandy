@@ -129,22 +129,24 @@
 }
 
 .select:disabled {
-  background: repeating-linear-gradient(
-    45deg,
-    #666666 0px,
-    #666666 10px,
-    #333333 10px,
-    #333333 20px
-  );
-  border-style: ridge;
-  border-color: #444444;
-  color: #666666;
-  cursor: not-allowed;
-  opacity: 0.8;
+  background: 
+    url("data:image/gif;base64,R0lGODlhCAAIAKECAAAAAP///////wAAACH5BAEKAAIALAAAAAAIAAgAAAISlI+pe+H/hnhUpmbvyLz3/yQFADs="),
+    linear-gradient(45deg, #ff6 12%, transparent 0, transparent 88%, #ff6 0),
+    linear-gradient(135deg, transparent 37%, #d9ecff 0, #d9ecff 63%, transparent 0) #c00;
+  background-size: 3px 3px, 20px 20px, 20px 20px;
+  border: 8px ridge #ff00ff;
+  color: #00ff00;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><text y='25' font-size='20'>🚫</text></svg>"), not-allowed;
   text-shadow: 
-    -1px -1px #ff0000,
-    1px 1px #0000ff;
-  animation: glitchText 0.3s infinite;
+    2px 2px #ff0000,
+    -2px -2px #0000ff,
+    0 0 5px #ffffff;
+  font-family: "Papyrus", "Comic Sans MS", fantasy;
+  letter-spacing: 2px;
+  animation: 
+    geocitiesSpin 3s infinite linear,
+    marqueeLeft 1s infinite linear,
+    blink 0.5s infinite step-end;
 }
 
 .disabledOverlay {
@@ -231,4 +233,19 @@
   0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
   50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
   100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+}
+
+@keyframes geocitiesSpin {
+  0% { transform: perspective(500px) rotateY(0deg); }
+  100% { transform: perspective(500px) rotateY(360deg); }
+}
+
+@keyframes marqueeLeft {
+  0% { background-position: 0 0; }
+  100% { background-position: -20px 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }

@@ -60,7 +60,7 @@ const Dropdown = React.forwardRef(({
       </select>
       {error && (
         <div className={styles.errorLabel}>
-          AAAAAA IT BORKED
+          {error}
         </div>
       )}
       {disabled && (
