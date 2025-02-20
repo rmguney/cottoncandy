@@ -1,0 +1,72 @@
+.wrapper {
+  position: relative;
+  padding: 5px;
+  background: linear-gradient(to right, #ff00ff, #00ff00);
+  border: 3px dotted #ff0000;
+  max-width: 300px;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.button {
+  width: 100%;
+  padding: 8px 16px;
+  border: 5px groove #00ffff;
+  background: #ffff00;
+  font-family: "Comic Sans MS";
+  font-size: 16px;
+  color: #ff00ff;
+  transform: skew(-5deg);
+  box-shadow: inset 0 0 10px #ff00ff;
+  cursor: pointer;
+  animation: buttonDance 1s infinite;
+  min-width: 120px;
+}
+
+.button:hover {
+  animation: shake 0.5s infinite;
+  background: #00ffff;
+  color: #ff0000;
+}
+
+.button:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  animation: none;
+  cursor: not-allowed;
+  background: #cccccc;
+}
+
+.danger {
+  background: #ff0000;
+  color: #ffff00;
+  border-color: #ff00ff;
+}
+
+.danger:hover {
+  background: #ff00ff;
+  color: #ff0000;
+}
+
+@keyframes buttonDance {
+  0%, 100% { transform: skew(-5deg) rotate(-1deg); }
+  50% { transform: skew(-5deg) rotate(1deg); }
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}

@@ -20,6 +20,39 @@
   100% { opacity: 0; }
 }
 
+@keyframes rainbow {
+  0% { color: red; }
+  20% { color: yellow; }
+  40% { color: lime; }
+  60% { color: blue; }
+  80% { color: purple; }
+  100% { color: red; }
+}
+
+@keyframes rotateHue {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes zoomInOut {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wordArt {
+  0% { letter-spacing: normal; }
+  50% { letter-spacing: 0.5em; }
+  100% { letter-spacing: normal; }
+}
+
+@keyframes wiggleWoggle {
+  0% { transform: skew(0deg, 0deg); }
+  25% { transform: skew(5deg, 5deg); }
+  75% { transform: skew(-5deg, -5deg); }
+  100% { transform: skew(0deg, 0deg); }
+}
+
 .animate-blink {
   animation: blink 0.5s linear infinite;
 }
@@ -27,5 +60,64 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Comic Sans MS", "Comic Neue", cursive;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="18" font-size="16">💀</text></svg>'), auto;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%23000' fill-opacity='.3'/%3E%3C/svg%3E");
+}
+
+.rainbow-text {
+  animation: rainbow 3s linear infinite;
+}
+
+.under-construction {
+  background: repeating-linear-gradient(
+    45deg,
+    yellow,
+    yellow 10px,
+    black 10px,
+    black 20px
+  );
+}
+
+.section-title {
+  animation: wiggleWoggle 2s ease-in-out infinite, rainbow 3s linear infinite;
+  font-family: "Comic Sans MS", "Papyrus", fantasy;
+  text-shadow: 
+    3px 3px 0 #ff00ff,
+    -3px -3px 0 #00ff00;
+}
+
+.blursed-container {
+  position: relative;
+  background: linear-gradient(45deg, #ff00ff, #00ff00, #ff0000);
+  animation: rotateHue 3s infinite linear;
+  border: 3px groove #ff00ff;
+  box-shadow: 
+    0 0 10px #ff00ff,
+    inset 0 0 20px #00ff00;
+}
+
+.word-art {
+  font-weight: bold;
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: wordArt 2s infinite;
+  text-shadow: 
+    2px 2px 0 #ffffff,
+    -2px -2px 0 #000000;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+  border: 2px dotted #00ff00;
+}
+
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="18" font-size="16">💀</text></svg>') 10 10, auto;
 }
