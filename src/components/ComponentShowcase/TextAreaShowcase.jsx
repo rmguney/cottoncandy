@@ -7,14 +7,14 @@ export default function TextAreaShowcase() {
   const [value, setValue] = useState('');
 
   return (
-    <section id="textarea" className="border-4 border-double border-[#FF00FF] p-8 bg-[#000000] text-[#00FF00]">
-      <h2 className="text-4xl mb-4 font-bold rainbow-text">✨ big box ✨</h2>
+    <section id="textarea" className="border-4 border-double border-[#FF00FF] p-4 sm:p-8 bg-[#000000] text-[#00FF00]">
+      <h2 className="text-2xl sm:text-4xl mb-4 font-bold rainbow-text">✨ big box ✨</h2>
       
-      <div className="bg-[#0000FF] p-4 mb-4 font-[Comic Sans MS]">
-        <code className="text-[#FFFF00]">npm install @blursed/textarea</code>
+      <div className="bg-[#0000FF] p-2 sm:p-4 mb-4 font-[Comic Sans MS] overflow-x-auto">
+        <code className="text-[#FFFF00] text-sm sm:text-base whitespace-nowrap">npm install @blursed/textarea</code>
       </div>
 
-      <div className="grid gap-8 mb-8">
+      <div className="grid grid-cols-1 gap-4 mb-8 w-full">
         <TextArea 
           label="put stuf"
           placeholder="many text go here"
@@ -37,11 +37,11 @@ export default function TextAreaShowcase() {
         />
       </div>
 
-      <div className="bg-[#330033] p-4 text-[#00FF00] font-mono">
-        <pre>{`import { TextArea } from '@blursed'
+      <div className="bg-[#330033] p-2 sm:p-4 text-[#00FF00] font-mono overflow-x-auto">
+        <pre className="text-sm sm:text-base whitespace-pre">{`import { TextArea } from '@cottoncandy/TextArea'
 
-<BigBox
-  label="many text"
+<TextArea
+  label="put stuf"
   placeholder="write lot here"
 />`}</pre>
       </div>

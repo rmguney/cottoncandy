@@ -1,8 +1,10 @@
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-600 via-yellow-400 to-green-500">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {children}
+    <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full flex items-center justify-center">
+        <div className="w-full max-w-7xl p-4 sm:p-6 md:p-8 lg:p-10">
+          {children}
+        </div>
       </div>
     </div>
   );

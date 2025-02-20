@@ -8,15 +8,15 @@ import TextAreaShowcase from "../components/ComponentShowcase/TextAreaShowcase";
 export default function Home() {
   return (
     <Layout>
-      <main className="grid gap-12 p-8 relative">
+      <main className="grid gap-12 py-8 relative min-h-screen">
         <Hero />
         <div className="grid gap-8">
           <ButtonShowcase />
           <InputShowcase />
           <TextAreaShowcase />
         </div>
+        <Footer />
       </main>
-      <Footer />
     </Layout>
   );
 }

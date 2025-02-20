@@ -12,13 +12,13 @@ export default function InputShowcase() {
       <h2 className="text-4xl mb-4 font-bold rainbow-text">✨ inpot ✨</h2>
       
       <div className="bg-[#0000FF] p-4 mb-4 font-[Comic Sans MS]">
-        <code className="text-[#FFFF00]">npm install @blursed/input</code>
+        <code className="text-[#FFFF00]">npm install @cottoncandy/Input</code>
       </div>
 
       <div className="flex flex-wrap gap-4 mb-8">
         <Input 
-          label="type here pls"
-          placeholder="text go here"
+          label="put text"
+          placeholder="type here ok"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -37,11 +37,12 @@ export default function InputShowcase() {
       </div>
 
       <div className="bg-[#330033] p-4 text-[#00FF00] font-mono">
-        <pre>{`import { Input } from '@blursed'
+        <pre>{`import { Input } from '@cottoncandy/Input'
 
 <Input
-  label="put text"
-  placeholder="type here ok"
+  label="oh no erör"
+  placeholder="broke :("
+  error="AAAAAA IT BORKED"
 />`}</pre>
       </div>
     </section>

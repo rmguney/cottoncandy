@@ -12,26 +12,26 @@ export default function ButtonShowcase() {
       <h2 className="text-4xl mb-4 font-bold rainbow-text">✨ boton ✨</h2>
       
       <div className="bg-[#0000FF] p-4 mb-4 font-[Comic Sans MS]">
-        <code className="text-[#FFFF00]">npm install @blursed/button</code>
+        <code className="text-[#FFFF00]">npm install @cottoncandy/Button</code>
       </div>
 
-      <div className="flex flex-row items-center justify-center gap-4 my-8">
-        <Button onClick={handleClick}>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 my-8 w-full">
+        <Button onClick={handleClick} className="w-full sm:w-auto">
           {`klicc (${clickCount})`}
         </Button>
         
-        <Button variant="danger">
+        <Button variant="danger" className="w-full sm:w-auto">
           danjer!!
         </Button>
 
-        <Button disabled>
+        <Button disabled className="w-full sm:w-auto">
           no touchy!!1
         </Button>
       </div>
 
       <div className="bg-[#330033] p-4 text-[#00FF00] font-mono">
         <pre>
-          {`import { Button } frm '@blursed/button'
+          {`import { Button } frm '@cottoncandy/Button'
 
 <Button variant="danjer">
   do awfle thngs
