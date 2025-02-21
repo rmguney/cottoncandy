@@ -31,7 +31,7 @@ export default function ButtonShowcase() {
 
       <div className="bg-[#330033] p-4 text-[#00FF00] font-mono">
         <pre>
-          {`import { Button } frm '@cottoncandy/Button'
+          {`import { Button } from '@cottoncandy/Button'
 
 <Button variant="danger">
   do awfle thngs

@@ -5,59 +5,63 @@ import styles from './Input.module.css';
 
 export function useInput(props = {}) {
   const [focused, setFocused] = React.useState(false);
+  const [value, setValue] = React.useState(props.defaultValue || '');
   
-  return {
-    inputProps: {
-      onFocus: (e) => {
-        setFocused(true);
-        props.onFocus?.(e);
-      },
-      onBlur: (e) => {
-        setFocused(false);
-        props.onBlur?.(e);
-      },
-      ...props
+  const inputProps = React.useMemo(() => ({
+    'aria-invalid': !!props.error,
+    'aria-disabled': props.disabled,
+    value: props.value !== undefined ? props.value : value,
+    onFocus: (e) => {
+      setFocused(true);
+      props.onFocus?.(e);
     },
-    focused
+    onBlur: (e) => {
+      setFocused(false);
+      props.onBlur?.(e);
+    },
+    onChange: (e) => {
+      if (props.value === undefined) {
+        setValue(e.target.value);
+      }
+      props.onChange?.(e);
+    },
+    disabled: props.disabled,
+    ...props
+  }), [props, value]);
+
+  return {
+    inputProps,
+    focused,
+    value: props.value !== undefined ? props.value : value,
+    setValue: props.value === undefined ? setValue : () => {}
   };
 }
 
 const Input = React.forwardRef(({ 
-  render,
+  as,
   children,
   className,
   error,
   disabled,
+  unstyled,
   ...props 
 }, ref) => {
-  const { inputProps, focused } = useInput(props);
-
-  if (render) {
-    return render({ inputProps, focused, ref });
-  }
+  const state = useInput(props);
+  const Component = as || 'input';
 
   if (typeof children === 'function') {
-    return children({ inputProps, focused, ref });
+    return children({ ...state, ref });
   }
 
   return (
     <div className={styles.wrapper}>
-      <input
+      <Component
         ref={ref}
-        className={`${styles.input} ${className || ''}`}
-        disabled={disabled}
-        {...inputProps}
+        className={unstyled ? className : `${styles.input} ${className || ''}`}
+        {...state.inputProps}
       />
-      {error && (
-        <div className={styles.errorLabel}>
-          {error}
-        </div>
-      )}
-      {disabled && (
-        <div className={styles.disabledOverlay}>
-          ×
-        </div>
-      )}
+      {error && !unstyled && <div className={styles.errorLabel}>{error}</div>}
+      {disabled && !unstyled && <div className={styles.disabledOverlay}>×</div>}
     </div>
   );
 });

@@ -9,7 +9,7 @@ export default function InputShowcase() {
 
   return (
     <section id="inputs" className="border-4 border-double border-[#FF00FF] p-8 bg-[#000000] text-[#00FF00]">
-      <h2 className="text-4xl mb-4 font-bold rainbow-text">✨ inpot ✨</h2>
+      <h2 className="text-4xl mb-4 font-bold rainbow-text">✨ impot ✨</h2>
       
       <div className="bg-[#0000FF] p-4 mb-4 font-[Comic Sans MS]">
         <code className="text-[#FFFF00]">npm install @cottoncandy/Input</code>

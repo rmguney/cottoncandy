@@ -1,49 +1,65 @@
 'use client';
 
 import React from 'react';
-import dynamic from 'next/dynamic';
 import styles from './Button.module.css';
 
 export function useButton(props = {}) {
   const [isPressed, setIsPressed] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
+
+  const buttonProps = React.useMemo(() => ({
+    role: 'button',
+    'aria-disabled': props.disabled,
+    onMouseDown: (e) => {
+      setIsPressed(true);
+      props.onMouseDown?.(e);
+    },
+    onMouseUp: (e) => {
+      setIsPressed(false);
+      props.onMouseUp?.(e);
+    },
+    onMouseEnter: (e) => {
+      setIsHovered(true);
+      props.onMouseEnter?.(e);
+    },
+    onMouseLeave: (e) => {
+      setIsHovered(false);
+      setIsPressed(false);
+      props.onMouseLeave?.(e);
+    },
+    onFocus: (e) => {
+      setIsFocused(true);
+      props.onFocus?.(e);
+    },
+    onBlur: (e) => {
+      setIsFocused(false);
+      props.onBlur?.(e);
+    },
+    onClick: (e) => {
+      if (props.disabled) {
+        e.preventDefault();
+        return;
+      }
+      if (props.soundEffect) {
+        new Audio(props.soundEffect).play().catch(() => {});
+      }
+      props.onClick?.(e);
+    },
+    ...props
+  }), [props]);
 
   return {
-    buttonProps: {
-      onMouseDown: () => setIsPressed(true),
-      onMouseUp: () => setIsPressed(false),
-      onMouseEnter: () => setIsHovered(true),
-      onMouseLeave: () => {
-        setIsHovered(false);
-        setIsPressed(false);
-      },
-      ...props
-    },
+    buttonProps,
     isPressed,
-    isHovered
+    isHovered,
+    isFocused
   };
 }
 
-const Button = React.forwardRef(({ 
-  render,
-  children,
-  className,
-  soundEffect,
-  disabled,
-  ...props 
-}, ref) => {
+const Button = React.forwardRef(({ as, children, className, disabled, ...props }, ref) => {
   const state = useButton(props);
-  
-  const handleClick = (e) => {
-    if (soundEffect) {
-      new Audio(soundEffect).play().catch(() => {});
-    }
-    props.onClick?.(e);
-  };
-
-  if (render) {
-    return render({ ...state, ref });
-  }
+  const Component = as || 'button';
 
   if (typeof children === 'function') {
     return children({ ...state, ref });
@@ -51,28 +67,17 @@ const Button = React.forwardRef(({
 
   return (
     <div className={styles.wrapper}>
-      <button
+      <Component
         ref={ref}
         className={`${styles.button} ${className || ''}`}
-        disabled={disabled}
         {...state.buttonProps}
-        onClick={handleClick}
-        data-sound={!!soundEffect}
       >
         {children}
-      </button>
-      {disabled && (
-        <div className={styles.disabledOverlay}>
-          ×
-        </div>
-      )}
+      </Component>
+      {disabled && <div className={styles.disabledOverlay}>×</div>}
     </div>
   );
 });
 
 Button.displayName = 'Button';
-
-// Prevent hydration mismatch
-export default dynamic(() => Promise.resolve(Button), {
-  ssr: false
-});
+export default Button;

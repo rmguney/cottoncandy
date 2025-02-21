@@ -23,7 +23,7 @@ export default function TextAreaShowcase() {
         
         <TextArea 
           placeholder="oopsie"
-          error="AAAAAA IT BORKED"
+          error="bad thing happen"
           defaultValue="no werk :("
         />
         
@@ -39,7 +39,7 @@ export default function TextAreaShowcase() {
 
 <TextArea
   placeholder="many text go here"
-  error="bad thing happen"
+  error="BAD THING HAPPEN"
 />`}</pre>
       </div>
     </section>
